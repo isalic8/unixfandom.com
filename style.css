@@ -1,0 +1,186 @@
+@font-face {
+  font-family: Roboto Condensed;
+  src: url(/files/roboto.ttf);
+}
+/*I like variables*/ :root { 
+	--nav-background: #F8F9F9;
+	--nav-text-color: #000;
+	--logo-text-color: #000;
+	--body-background: #F9FAFB;
+	/*a tags*/
+	--link-text-color: #1F7BB3;
+	/*pre tags*/
+	--pre-background: #D6DBDF;
+	/*[>code tags<]*/
+	--code-text-color: #b8bb26;
+}
+
+*, *::before, *::after {
+	box-sizing: border-box;
+	opacity: 1;
+}
+
+body {
+	font-family: Roboto Condensed, serif;
+	margin: 0;
+	background: var(--body-background);
+}
+
+.main {
+	position: relative;
+	margin: 0 20%;
+	background: var(--content-background);
+	color: var(--text-color);
+	top: 10em;
+	padding: 10px 20px;
+}
+
+.quickstart {
+	text-align: center;
+}
+
+h1 {
+}
+
+h2 {
+	font-size: 4em;
+	font-weight: 400;
+}
+
+h3 {
+	font-size: 2.5em;
+	font-weight: 400;
+}
+
+pre {
+	background: var(--pre-background);
+	padding: 10px;
+	border-radius: 8px;
+	overflow: auto;
+}
+
+img {
+	width: 100%;
+}
+
+li {
+	list-style: none;
+	line-height: 2em;
+}
+
+a {
+	color: var(--link-text-color);
+	text-decoration: none;
+	font-weight: 600;
+}
+
+a:hover {
+	color: #CC99FF;
+	transition: all 250ms ease 0s;
+}
+
+/*Navigation*/
+header {
+	background: var(--nav-background);
+	text-align: center;
+	position: fixed;
+	z-index: 999; /*Keeps our header at the top of the screen, no matter what.*/
+	width: 100%;
+}
+
+.logo {
+	margin-left: 1em;
+	margin-top: 1em;
+	font-weight: 400;
+}
+
+.logo a {
+	text-decoration: none;
+	color: var(--logo-text-color);
+
+}
+
+.nav-toggle {
+	display: none;
+}
+
+.nav-toggle-label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin-left: 1em;
+	/*Centering our label/burger menu*/
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  background: var(--nav-text-color);
+  height: 3px;
+  width: 35px;
+  border-radius: 2px;
+  position: relative;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  content: '';
+  position: absolute;
+}
+
+/*Changes the top and bottom bars of the menu button*/
+.nav-toggle-label span::before {
+  bottom: 11px;
+}
+
+.nav-toggle-label span::after {
+  top: 11px;
+}
+
+nav {
+	background: var(--nav-background);
+	position: absolute;
+	text-align: left;
+	width: 100%;
+	top: 100%;
+	left: 0;
+	/*Hides the navigation bar. We use transform over "display: none;" because it allows us to use transitions*/
+	transform: scale(1, 0);
+	transform-origin: top;
+	transition: transform 400ms ease-in-out;
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+nav li {
+	margin-bottom: 1em;
+	margin-left: 1em;
+}
+
+nav a {
+	color: var(--link-text-color);
+	text-decoration: none;
+	font-size: 1.2rem;
+	text-transform: uppercase;
+	opacity: 0;
+	transition: opacity 150ms ease-in-out;
+}
+
+/*Search for the nav element that's next to our nav-toggle class*/
+.nav-toggle:checked ~ nav {
+	transform: scale(1, 1);
+}
+
+/*This transition is only used if the menu box is checked. Otherwise, the transition of "nav" is used...awesome.*/
+.nav-toggle:checked ~ nav a {
+	opacity: 1;
+	transition: opacity 250ms ease-in-out 250ms;
+}

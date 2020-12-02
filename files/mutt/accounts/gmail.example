@@ -1,0 +1,21 @@
+# vim: filetype=neomuttrc
+set from = "peter@gmail.com"
+set realname = "Peter"
+set folder = "~/.local/share/mail/peter"
+set sendmail = "msmtp -a peter"
+set spoolfile = "+INBOX"
+# set record="+[Gmail]/Sent Mail"
+unset record # Gmail automatically saves record. Unsetting prevents duplicates.
+set postponed="+[Gmail]/Drafts"
+mailboxes =INBOX "=[Gmail]/Sent Mail" "=[Gmail]/Drafts"
+set header_cache=~/.config/mutt/accounts/peter.gmail/hcache
+
+# Alias file. Links words to emails
+source ~/.config/mutt/accounts/peter.gmail/aliases
+
+# Folder macros. Gmail specific
+macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro index gs "<change-folder>=[Gmail]/Sent Mail<enter>" "Go to sent"
+macro index gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"
+macro index gt "<change-folder>=[Gmail]/Trash<enter>" "Go to trash"
+
